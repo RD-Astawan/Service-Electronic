@@ -49,7 +49,7 @@
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item {{ request()->is('laporan_servis','laporan_pemasukan','laporan_pesan') ? 'active' : '' }}">
 							<a data-toggle="collapse" href="#forms">
 								<i class="fas fa-pen-square"></i>
 								<p>Data Servis</p>
@@ -57,9 +57,19 @@
 							</a>
 							<div class="collapse" id="forms">
 								<ul class="nav nav-collapse">
-									<li>
-										<a href="#">
-											<span class="sub-item">Basic Form</span>
+									<li class="{{ request()->is('laporan_servis') ? 'active' : '' }}">
+										<a href="{{ route('laporan_servis') }}">
+											<span class="sub-item">Laporan Data Servis</span>
+										</a>
+									</li>
+									<li class="{{ request()->is('laporan_pemasukan') ? 'active' : '' }}">
+										<a href="{{ route('laporan_pemasukan') }}">
+											<span class="sub-item">Laporan Pemasukan Bulanan</span>
+										</a>
+									</li>
+									<li class="{{ request()->is('laporan_pesan') ? 'active' : '' }}">
+										<a href="{{ route('laporan_pesan') }}">
+											<span class="sub-item">Laporan Pesan Terkirim</span>
 										</a>
 									</li>
 									
@@ -68,7 +78,7 @@
 						</li>
 						@elseif(auth()->user()->level == 'teknisi')
 						<li class="nav-item" >
-							<a href="#">
+							<a href="{{ route('dashboard') }}">
 								<i class="fas fa-home"></i>
 								<p>Dashboard Teknisi</p>
 							</a>

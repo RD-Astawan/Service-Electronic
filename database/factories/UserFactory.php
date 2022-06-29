@@ -18,6 +18,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+            'id' => 'ADM1',
             'nama' => $this->faker->name(),
             'alamat' => $this->faker->address(),
             'no_hp' => '081237151754',

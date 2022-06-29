@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('servis', function (Blueprint $table) {
-            $table->id('id_servis');
-            $table->unsignedBigInteger('id_user');
+            $table->string('id_servis')->primary();
+            $table->string('id_user');
             $table->string('jenis_barang');
             $table->string('merk_barang');
             $table->string('tipe_barang');

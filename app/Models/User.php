@@ -19,8 +19,13 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    public $timestamps = false;
+    public $incrementing = false;
+    protected $primaryKey = 'id';
+    protected $keyType = 'string';
 
     protected $fillable = [
+        'id',
         'nama',
         'alamat',
         'no_hp',
@@ -51,5 +56,4 @@ class User extends Authenticatable
     // protected $casts = [
     //     'email_verified_at' => 'datetime',
     // ];
-    public $timestamps = false;
 }

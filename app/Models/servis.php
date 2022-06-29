@@ -18,7 +18,11 @@ class servis extends Model
      *
      * @var array<int, string>
      */
-
+    public $timestamps = false;
+    public $incrementing = false;
+    protected $primaryKey = 'id_servis';
+    protected $keyType = 'string';
+    
     protected $fillable = [
         'id_servis',
         'id_user',
@@ -40,6 +44,7 @@ class servis extends Model
     public function allNoHp(){
         return DB::table('users')
             ->join('servis', 'users.id', '=', 'servis.id_user')
+            ->where('users.level', 'customer')
             ->where('servis.status', 'selesai')
             ->get();
     }
@@ -47,5 +52,5 @@ class servis extends Model
     //     return DB::table('users')->where('id', $id)->first();
     // }
 
-    public $timestamps = false;
+    
 }

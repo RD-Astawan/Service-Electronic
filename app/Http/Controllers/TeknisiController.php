@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Servis;
+use App\Models\SMSGateway;
 use App\Models\User;
 use Hash;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -16,6 +17,7 @@ class TeknisiController extends Controller
     {
         $this->middleware('auth');
         $this->Servis = new Servis();
+        $this->SMSGateway = new SMSGateway();
     }
 
     public function index(){
@@ -34,9 +36,21 @@ class TeknisiController extends Controller
 
     public function create()
     {
+        $data = DB::table('servis')->select(DB::raw('MAX(RIGHT(id_servis,1)) as kode'));
+        $kd = "";
+        if($data->count() > 0){
+            foreach ($data->get() as $row) {
+                $tmp = ((int)$row->kode)+1;
+                $kd = sprintf("%01s",$tmp);
+            }
+        }
+        else{
+            $kd = "1";
+        }
+
         $users = DB::table('users')->where('level', 'customer')->get();
         //
-        return view('add_servis', compact('users'));
+        return view('add_servis', compact('users','kd'));
     }
 
     public function store(Request $request)
@@ -47,6 +61,7 @@ class TeknisiController extends Controller
         // ]);
         
         Servis::create([
+            'id_servis' => $request->id_servis,
             'id_user' => $request->id_user,
             'jenis_barang' => $request->jenis_barang,
             'merk_barang' => $request->merk_barang,
@@ -61,12 +76,25 @@ class TeknisiController extends Controller
 
         //Alert::success('Berhasil','Data User Ditambahkan');
         Alert::success('Berhasil', 'Data User berhasil ditambahkan');
-        return redirect('user');
+        return redirect('servis');
     }
 
     public function showsms(){
+        $data = DB::table('s_m_s_gateways')->select(DB::raw('MAX(RIGHT(id_sms,1)) as kode'));
+        $kd = "";
+        if($data->count() > 0){
+            foreach ($data->get() as $row) {
+                $tmp = ((int)$row->kode)+1;
+                $kd = sprintf("%01s",$tmp);
+            }
+        }
+        else{
+            $kd = "1";
+        }
         $data = [
             'no_hp' => $this->Servis->allNoHp(),
+            'kd' => $kd,
+            
         ];
         return view('sms', $data);
     }
@@ -82,7 +110,14 @@ class TeknisiController extends Controller
         foreach ($recipients as $recipient) {
             $this->sendMessage($request->body, $recipient);
         }
-        return back()->with(['success' => "Message on its way to recipients!"]);
+
+        SMSGateway::create([
+            'id_sms' => $request->id_sms,
+            'isi_pesan' => $request->body,
+            'tgl_terkirim' => $request->tgl_terkirim,
+        ]);
+
+        return back()->with(['success' => "Pesan Berhasil Dikirim!"]);
     }
    
     private function sendMessage($message, $recipients)

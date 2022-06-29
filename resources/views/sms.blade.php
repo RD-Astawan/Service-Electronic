@@ -43,6 +43,12 @@
                             <form method="POST" action="/custom">
                                 @csrf
                                 <div class="form-group">
+                                    <input type="hidden" value="{{ 'SMS'.$kd }}" name="id_sms" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" value="{{ date('Y-m-d H:i:s'); }}" name="tgl_terkirim" class="form-control">
+                                </div>
+                                <div class="form-group">
                                     <label>Select contact</label>
                                     <select name="contact[]" multiple class="form-control contact">
                                         @foreach ($no_hp as $user)
@@ -58,7 +64,4 @@
                             </form>
                         </div>
                                           
-                                       
-                               
-
 @endsection

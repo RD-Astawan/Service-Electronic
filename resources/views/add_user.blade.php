@@ -45,6 +45,10 @@
                             <div class="form-group">
                             <div class="row">						
                                 <div class="col-md-6">
+                                   
+                                        <input type="hidden" id="read_2" name="id_2" value="{{ $kd }}" class="form-control input-square" id="squareInput">                          
+                                        <input type="hidden" id="read" name="id" value="" class="form-control input-square" id="squareInput">
+                     
                                     <div class="form-group">
                                         <label for="squareInput">Nama</label>
                                         <input type="text" name="nama" class="form-control input-square" id="squareInput" placeholder="Nama" required>
@@ -63,11 +67,11 @@
                                     <div class="form-group">
                                         <label>Jenis Kelamin</label><br>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="inlineRadio1" value="Laki-laki">
+                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="inlineRadio1" value="Laki-laki" required>
                                             <label class="form-check-label" for="inlineRadio1">Laki-laki</label>
                                           </div>
                                           <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="inlineRadio2" value="perempuan">
+                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="inlineRadio2" value="perempuan" required>
                                             <label class="form-check-label" for="inlineRadio2">Perempuan</label>
                                           </div>
                                     </div>
@@ -88,15 +92,15 @@
                                     <div class="form-group">
                                         <label>Level</label><br>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="level" id="inlineRadio1" value="admin">
+                                            <input class="form-check-input level" type="radio" name="level" id="inlineRadio1" value="admin">
                                             <label class="form-check-label" for="inlineRadio1">Admin</label>
                                           </div>
                                           <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="level" id="inlineRadio2" value="teknisi">
+                                            <input class="form-check-input level" type="radio" name="level" id="inlineRadio2" value="teknisi">
                                             <label class="form-check-label" for="inlineRadio2">Teknisi</label>
                                           </div>
                                           <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="level" id="inlineRadio3" value="customer">
+                                            <input class="form-check-input level" type="radio" name="level" id="inlineRadio3" value="customer">
                                             <label class="form-check-label" for="inlineRadio3">Customer</label>
                                           </div>
                                     </div>
@@ -105,7 +109,7 @@
                         </div>
                         <hr>
                         <button class="btn btn-secondary" type="submit">Simpan</button>
-                        <button class="btn btn-warning">Warning</button>
+                        <a href="{{ route('user') }}" class="btn btn-warning">Kembali</a>
                         </form>
 
                       

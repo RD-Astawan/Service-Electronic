@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Hash;
 use RealRashid\SweetAlert\Facades\Alert;
+use DB;
 
 class UserController extends Controller
 {
@@ -32,7 +33,20 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('add_user');
+        
+        $data = DB::table('users')->select(DB::raw('MAX(RIGHT(id,1)) as kode'));
+        $kd = "";
+        if($data->count() > 0){
+            foreach ($data->get() as $row) {
+                $tmp = ((int)$row->kode)+1;
+                $kd = sprintf("%01s",$tmp);
+            }
+        }
+        else{
+            $kd = "1";
+        }
+
+        return view('add_user', compact('kd'));
     }
 
     /**
@@ -44,12 +58,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
         User::create([
+            'id' => $request->id,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'no_hp' => $request->no_hp,
             'jenis_kelamin' => $request->jenis_kelamin,
             'username' => $request->username,
-            'password' => Hash::make($request->username),
+            'password' => Hash::make($request->password),
             'level' => $request->level,
             
         ]);

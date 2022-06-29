@@ -67,5 +67,16 @@ Route::post('/custom',  [TeknisiController::class,'sendCustomMessage']);
 
 //data master customer
 
+//ajax
+Route::get('/search',  [CustomerController::class,'search']);
+Route::get('/read',  [CustomerController::class,'read']);
 
+//data master admin
+Route::get('/laporan_servis', [AdminController::class, 'show'])->name('laporan_servis');
+Route::get('/laporan_pemasukan', [AdminController::class, 'laporan_pemasukan'])->name('laporan_pemasukan');
+Route::get('/laporan_pesan', [AdminController::class, 'laporan_pesan'])->name('laporan_pesan');
+
+Route::get('/downloadpdf', [DashboardController::class, 'createPDF']);
+Route::get('/downloadpdf_servis', [DashboardController::class, 'createPDF_servis']);
+Route::get('/downloadpdf_pesan', [DashboardController::class, 'createPDF_pesan']);
 

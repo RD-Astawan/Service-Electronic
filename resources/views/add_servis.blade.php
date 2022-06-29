@@ -45,6 +45,7 @@
                             <div class="form-group">
                             <div class="row">						
                                 <div class="col-md-6">
+                                    <input type="text" name="id_servis" value="{{ 'DTS'.$kd }}" class="form-control input-square" id="squareInput">
                                     <div class="form-group">
                                         <label for="squareInput">Nama Customer</label>
                                         <select class="form-control" id="squareInput" name="id_user" required>

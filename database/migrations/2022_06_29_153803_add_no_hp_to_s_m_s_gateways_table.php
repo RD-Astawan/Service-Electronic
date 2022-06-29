@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('level');
+        Schema::table('s_m_s_gateways', function (Blueprint $table) {
+            $table->string('no_hp');
         });
-        
     }
 
     /**
@@ -26,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('level');
+        Schema::table('s_m_s_gateways', function (Blueprint $table) {
+            $table->dropColumn('no_hp');
         });
     }
 };

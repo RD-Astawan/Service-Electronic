@@ -35,10 +35,6 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">Data User</h4>
-                            <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
-                                <i class="fa fa-plus"></i>
-                                Add Row
-                            </button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -95,14 +91,13 @@
                             <table id="add-row" class="display table table-striped table-hover" >
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>Nama</th>
-                                        <th>Password</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>No.Hp</th>
-                                        <th>Alamat</th>
-                                        <th>Level</th>
-                                        <th style="width: 14%">Aksi</th>
+                                        <th style="text-align: center;">No</th>
+                                        <th style="text-align: center;">Nama</th>
+                                        <th style="text-align: center;">Jenis Kelamin</th>
+                                        <th style="text-align: center;">No.Hp</th>
+                                        <th style="text-align: center;">Alamat</th>
+                                        <th style="text-align: center;">Level</th>
+                                        <th style="width: 14%; text-align:center;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -111,7 +106,6 @@
                                     <tr>
                                         
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $row->nama }}</td>
                                             <td>{{ $row->nama }}</td>
                                             <td>{{ $row->jenis_kelamin }}</td>
                                             <td>{{ $row->no_hp }}</td>

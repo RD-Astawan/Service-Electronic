@@ -38,7 +38,7 @@
 			<div class="logo-header">
 				
 				<a href="#" class="logo">
-					<img src="{{ asset('assets/img/logoazzara.svg') }}" alt="navbar brand" class="navbar-brand">
+					<!-- <img src=" {//{ asset('assets/img/logoazzara.svg') }}" alt="navbar brand" class="navbar-brand"> -->
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
@@ -90,6 +90,31 @@
 		 $(document).ready(function() {
 		 $('.contact').select2();
 		 });
+	 </script>
+	 <script>
+		
+		$(document).ready(function() {
+			$('.level').click(function() {
+				var kdr = $("input[type=radio][name=level]:checked").val();
+				var kd = document.getElementById("read_2").value;
+				if (kdr) {
+					if(kdr=="admin"){
+						$('#read').val("ADM"+kd);
+					}
+					else if(kdr=="teknisi"){
+						$('#read').val("TEK"+kd);
+					}
+					else{
+						$('#read').val("CUS"+kd);
+					}
+					//$('#read').val(value+kd);
+				}
+				else {
+					alert('Nothing is selected');
+				}
+			})
+});
+
 	 </script>
 </body>
 </html>
