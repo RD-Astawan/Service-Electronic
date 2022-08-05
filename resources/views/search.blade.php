@@ -3,23 +3,23 @@
         <div class="row">
         <div class="form-group col-md-3">
             <label for="inputEmail4" style="text-align: left; float: left;">Nama Customer</label>
-            <input type="text" class="form-control" value="{{ $row->nama }}" id="inputEmail4">
+            <input type="text" class="form-control" value="{{ $row->nama }}" id="inputEmail4" readonly>
         </div>
         <div class="form-group col-md-3">
             <label for="inputPassword4" style="text-align: left; float: left;">Merk Barang</label>
-            <input type="text" class="form-control" value="{{ $row->merk_barang }}" id="inputPassword4">
+            <input type="text" class="form-control" value="{{ $row->merk_barang }}" id="inputPassword4" readonly>
         </div>
         <div class="form-group col-md-2">
             <label for="inputPassword4" style="text-align: left; float: left;">Jenis Barang</label>
-            <input type="text" class="form-control" value="{{ $row->jenis_barang }}" id="inputPassword4">
+            <input type="text" class="form-control" value="{{ $row->jenis_barang }}" id="inputPassword4" readonly>
         </div>
         <div class="form-group col-md-2">
             <label for="inputPassword4" style="text-align: left; float: left;">Tipe Barang</label>
-            <input type="text" class="form-control" value="{{ $row->tipe_barang }}" id="inputPassword4">
+            <input type="text" class="form-control" value="{{ $row->tipe_barang }}" id="inputPassword4" readonly>
         </div>
         <div class="form-group col-md-2">
             <label for="inputPassword4" style="text-align: left; float: left;">Biaya</label>
-            <input type="text" class="form-control" value="{{ $row->biaya_servis }}" id="inputPassword4">
+            <input type="text" class="form-control" value="{{ $row->biaya_servis }}" id="inputPassword4" readonly>
         </div>
     </div>
     </form>

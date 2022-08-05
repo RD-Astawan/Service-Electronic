@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('jenis_barang');
             $table->string('merk_barang');
             $table->string('tipe_barang');
-            $table->dateTime('tgl_masuk_barang');
+            $table->date('tgl_masuk_barang');
             $table->string('biaya_servis');
             $table->string('garansi');
-            $table->dateTime('tgl_barang_diambil');
+            $table->date('tgl_barang_diambil');
             $table->string('status');
         });
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <!-- <title></title> -->
+  <title>Customer-dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -139,6 +139,29 @@
 .current-item .progress-count{
     color: #21d4fd;
 }
+
+.whats-app {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 40px;
+    left: 15px;
+    z-index: 100;
+}
+
+.my-float {
+    margin-top: 10px;
+}
+.card{
+  min-height: 350px;
+  margin-bottom:20px;
+}
     
   </style>
 </head>
@@ -158,11 +181,7 @@
           <li><a class="nav-link scrollto" href="#profil">Profil</a></li>
           <li><a class="nav-link scrollto" href="#tracking">Tracking</a></li>
           <li><a class="nav-link scrollto" href="#tips_perawatan">Tips Perawatan</a></li>
-          <li><a class="nav-link scrollto" href="{{ route('logout') }}"
-            onclick="
-            event.preventDefault();
-            document.getElementById('formlogout').submit();"
-            >Logout</a>
+          <li><a class="nav-link scrollto" href="{{ route('login') }}">Login</a>
             <form id="formlogout" action="{{ route('logout') }}" method="post">@csrf</form>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

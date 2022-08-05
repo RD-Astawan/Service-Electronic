@@ -9,7 +9,7 @@
 <div class="content">
     <div class="page-inner">
         <div class="page-header">
-            <h4 class="page-title">Edit Data User</h4>
+            <h4 class="page-title">Data User</h4>
             <ul class="breadcrumbs">
                 <li class="nav-home">
                     <a href="#">
@@ -35,7 +35,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Tambah Data User</h4>
+                            <h4 class="card-title">Edit Data User</h4>
                         </div>
                     </div>
                     <div class="card-body">
@@ -57,7 +57,7 @@
 
                                     <div class="form-group">
                                         <label for="squareInput">Password</label>
-                                        <input type="password" name="password" class="form-control input-square" id="squareInput" placeholder="password" required>
+                                        <input type="password" name="password" class="form-control input-square" id="squareInput" placeholder="password">
                                     </div>
 
                                     <div class="form-group">

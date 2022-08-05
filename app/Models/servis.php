@@ -48,6 +48,9 @@ class servis extends Model
             ->where('servis.status', 'selesai')
             ->get();
     }
+    public function showonedata_servis($id_servis){
+        return DB::table('servis')->where('id_servis', $id_servis)->first();
+    }
     // public function showonedata($id){
     //     return DB::table('users')->where('id', $id)->first();
     // }

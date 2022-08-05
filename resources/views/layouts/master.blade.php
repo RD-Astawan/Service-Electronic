@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,10 +24,15 @@
 	<link rel="stylesheet" href="{{ asset('assets/css/azzara.min.css') }}">
 	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    
+    <style>
+		#panel-pemasukan{
+			display: none;
+		}
+	</style>
 </head>
 <body>
 	@include('sweetalert::alert')
+	
 	<div class="wrapper">
 		<!--
 				Tip 1: You can change the background color of the main header using: data-background-color="blue | purple | light-blue | green | orange | red"
@@ -79,9 +83,26 @@
 	<!-- Azzara DEMO methods, don't include it in your project! -->
 	<script src="{{ asset('assets/js/setting-demo.js') }}"></script>
 	<script >
+		function switch_btn() {
+			$('#panel-pemasukan').toggle(1000);
+		}
 		$(document).ready(function() {
 			$('#add-row').DataTable({
 			});
+
+         // var checkbox = document.getElementById('checkbox');
+         // var checkbox = document.getElementById('checkbox2');
+         // var delivery_div = document.getElementById('delivery');
+         // var showHiddenDiv = function(){
+         //    if(checkbox.checked || checkbox.checked2) {
+         //    delivery_div.style['display'] = 'block';
+         //    } else {
+         //    delivery_div.style['display'] = 'none';
+         //    } 
+         // }
+         // checkbox.onclick = showHiddenDiv;
+         // showHiddenDiv();
+
 		});
 	</script>
 	 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
@@ -89,10 +110,33 @@
 	 <script>
 		 $(document).ready(function() {
 		 $('.contact').select2();
+		 $('#panel-pemasukan').hide();
 		 });
 	 </script>
 	 <script>
-		
+		const add = document.querySelectorAll(".input-group .add_list")
+		add.forEach(function(e){
+			e.addEventListener('click', function(){
+				let element = this.parentElement
+				//console.log(element);
+				let newElement = document.createElement('div')
+				newElement.classList.add('input-group')
+				newElement.innerHTML = '<input type="text" name="list_tips[]" class="form-control input-square mt-3" placeholder="" aria-label="" aria-describedby="basic-addon1" required><button class="btn btn-danger btn-border input-group-prepend mt-3 remove_list" type="button">Remove</button>'
+				document.getElementById('extra-list').appendChild(newElement)
+				callEvent()
+				
+			})
+		})
+		callEvent()
+		function callEvent(){
+			document.querySelectorAll('.remove_list').forEach(function(remove){
+					remove.addEventListener('click',function(elmClick){
+						elmClick.target.parentElement.remove()
+					})
+				})
+		}
+	</script>
+	<script>
 		$(document).ready(function() {
 			$('.level').click(function() {
 				var kdr = $("input[type=radio][name=level]:checked").val();
@@ -112,8 +156,27 @@
 				else {
 					alert('Nothing is selected');
 				}
+
 			})
-});
+      });
+
+	 </script>
+    <script>
+		$(document).ready(function() {
+         $("#delivery").hide();
+			$('.ts').change(function() {
+				if($('.ts').is(":checked"))   
+               $("#delivery").show();
+            else
+               $("#delivery").hide();
+			})
+         $('.ta').change(function() {
+				if($('.ta').is(":checked"))   
+               $("#delivery").hide();
+            else
+               $("#delivery").hide();
+			})
+      });
 
 	 </script>
 </body>

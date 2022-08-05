@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('s_m_s_gateways', function (Blueprint $table) {
-            $table->string('id_sms')->primary();
-            $table->string('isi_pesan');
-            $table->date('tgl_terkirim');
+        Schema::create('profiles', function (Blueprint $table) {
+            $table->id('id_profile');
+            $table->string('judul');
+            $table->text('deskripsi');
+            $table->string('gambar');
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_m_s_gateways');
+        Schema::dropIfExists('profiles');
     }
 };

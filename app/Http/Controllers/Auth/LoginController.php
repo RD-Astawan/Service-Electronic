@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Models\ManagementDashboard;
+use App\Models\Profile;
+use App\Models\TipPerawatan;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -29,9 +33,9 @@ class LoginController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
     protected function redirectTo()
     {
-        if (auth()->user()->level == 'customer') {
-            return '/customer';
-        }
+        // if (auth()->user()->level == 'customer') {
+        //     return '/customer';
+        // }
         // return '/home';
     }
 
@@ -52,5 +56,13 @@ class LoginController extends Controller
     public function username()
     {
         return 'username';
+    }
+    public function show_dashboard_user(){
+        $data = ManagementDashboard::all();
+        $profile = Profile::all();
+        $tips = TipPerawatan::all();
+        $list = TipPerawatan::all();
+        $count = DB::table('tip_perawatans')->count();
+        return view('customer-dashboard', compact('data','profile','tips','list','count'));
     }
 }

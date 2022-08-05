@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','admin-dashboar')
+@section('title','admin-dashboard')
 @push('css-page')
 <link rel="icon" href="{{ asset('assets/img/icon.ico') }}" type="image/x-icon"/>
 @endpush

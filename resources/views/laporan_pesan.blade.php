@@ -34,7 +34,35 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">Data Pesan Terkirim</h4>
-                            <a class="btn btn-primary ml-auto" target="_blank" href="{{ url('downloadpdf_pesan') }}">Export to PDF</a>
+                            <button onclick="switch_btn()" class="btn btn-primary btn-round ml-auto">
+                                <i class="fa fa-print"></i>
+                                Cetak
+                            </button>
+                        </div>
+                        <div id="panel-pemasukan">
+                            <br>
+                            <form action="/cetak_lap_sms" method="get" target="_blank">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Tanggal Mulai</label>
+                                        <input type="date" class="form-control" name="tgl_mulai">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Tanggal Selesai</label>
+                                        <input type="date" class="form-control" name="tgl_selesai">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success btn-sm" style="margin-top:27px;">Print PDF</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
                         </div>
                     </div>
                     <div class="card-body">
@@ -42,9 +70,10 @@
                             <table id="add-row" class="display table table-striped table-hover" >
                                 <thead>
                                     <tr>
-                                        <th style="text-align: center">No</th>
+                                        <th style="text-align: center; width:7%;">No</th>
                                         <th style="text-align: center">ID SMS</th>
                                         <th style="text-align: center">Tanggal Terkirim</th>
+                                        <th style="text-align: center">No Handphone</th>
                                         <th style="text-align: center">Pesan</th>
                                     </tr>
                                 </thead>
@@ -52,9 +81,10 @@
                                     @php $no=1 @endphp
                                         @foreach ($data as $row)
                                     <tr>
-                                            <td style="text-align: center; width:5%;">{{ $no++ }}</td>
+                                            <td style="text-align: center; width:7%;">{{ $no++ }}</td>
                                             <td style="text-align: center; width:10%;">{{ $row->id_sms }}</td>
                                             <td style="text-align: center; width:20%;">{{ $row->tgl_terkirim }}</td>
+                                            <td style="text-align: center; width:30%;">{{ $row->no_hp }}</td>
                                             <td>{{ $row->isi_pesan }}</td>
                                         @endforeach
                                     </tr>

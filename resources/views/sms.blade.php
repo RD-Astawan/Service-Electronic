@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','admin-dashboar')
+@section('title','Teknisi-sms')
 @push('css-page')
 <link rel="icon" href="{{ asset('assets/img/icon.ico') }}" type="image/x-icon"/>
 @endpush
@@ -42,17 +42,15 @@
                         <div class="card-body">
                             <form method="POST" action="/custom">
                                 @csrf
-                                <div class="form-group">
-                                    <input type="hidden" value="{{ 'SMS'.$kd }}" name="id_sms" class="form-control">
-                                </div>
+                                <input type="hidden" value="{{ 'SMS'.$kd }}" name="id_sms" class="form-control">
                                 <div class="form-group">
                                     <input type="hidden" value="{{ date('Y-m-d H:i:s'); }}" name="tgl_terkirim" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>Select contact</label>
-                                    <select name="contact[]" multiple class="form-control contact">
+                                    <select name="no_hp[]" multiple class="form-control contact">
                                         @foreach ($no_hp as $user)
-                                        <option>{{$user->no_hp}}</option>
+                                        <option value="{{$user->no_hp}}">{{$user->no_hp}}</option>
                                         @endforeach
                                     </select>
                                 </div>

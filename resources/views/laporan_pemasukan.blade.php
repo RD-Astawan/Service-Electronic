@@ -34,7 +34,35 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">Data Pemasukan Bulanan</h4>
-                            <a class="btn btn-primary ml-auto" target="_blank" href="{{ url('downloadpdf') }}">Export to PDF</a>
+                            <button onclick="switch_btn()" class="btn btn-primary btn-round ml-auto">
+                                <i class="fa fa-print"></i>
+                                Cetak
+                            </button>
+                        </div>
+                        <div id="panel-pemasukan">
+                            <br>
+                            <form action="/cetak_lap_pemasukan" method="get" target="_blank">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Tanggal Mulai</label>
+                                        <input type="date" class="form-control" name="tgl_mulai">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Tanggal Selesai</label>
+                                        <input type="date" class="form-control" name="tgl_selesai">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success btn-sm" style="margin-top:27px;">Print PDF</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
                         </div>
                     </div>
                     <div class="card-body">

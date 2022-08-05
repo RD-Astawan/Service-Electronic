@@ -91,12 +91,12 @@
                             <table id="add-row" class="display table table-striped table-hover" >
                                 <thead>
                                     <tr>
-                                        <th style="text-align: center;">No</th>
+                                        <th style="text-align: center; width:7%;">No</th>
                                         <th style="text-align: center;">Nama</th>
-                                        <th style="text-align: center;">Jenis Kelamin</th>
+                                        <th style="text-align: center; width:10%;">JK</th>
                                         <th style="text-align: center;">No.Hp</th>
                                         <th style="text-align: center;">Alamat</th>
-                                        <th style="text-align: center;">Level</th>
+                                        <th style="text-align: center; width:8%;">Level</th>
                                         <th style="width: 14%; text-align:center;">Aksi</th>
                                     </tr>
                                 </thead>
@@ -105,12 +105,12 @@
                                         @foreach ($user as $row)
                                     <tr>
                                         
-                                            <td>{{ $no++ }}</td>
+                                            <td style="text-align: center;">{{ $no++ }}</td>
                                             <td>{{ $row->nama }}</td>
-                                            <td>{{ $row->jenis_kelamin }}</td>
-                                            <td>{{ $row->no_hp }}</td>
+                                            <td style="text-align: center;">{{ $row->jenis_kelamin }}</td>
+                                            <td style="text-align: center;">{{ $row->no_hp }}</td>
                                             <td>{{ $row->alamat }}</td>
-                                            <td>{{ $row->level }}</td>
+                                            <td style="text-align: center;">{{ $row->level }}</td>
                                             <td>
                                                 <a href="/user/edit/{{ $row->id }}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>
                                                 <a href="#modalHapusUser{{ $row->id }}" data-toggle="modal" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>

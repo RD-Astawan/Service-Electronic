@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Teknisi-service')
+@section('title','admin-dashboar')
 @push('css-page')
 <link rel="icon" href="{{ asset('assets/img/icon.ico') }}" type="image/x-icon"/>
 @endpush
@@ -8,7 +8,7 @@
 <div class="content">
     <div class="page-inner">
         <div class="page-header">
-            <h4 class="page-title">Data Servis</h4>
+            <h4 class="page-title">Data Beranda</h4>
             <ul class="breadcrumbs">
                 <li class="nav-home">
                     <a href="#">
@@ -25,7 +25,7 @@
                     <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Servis</a>
+                    <a href="#">Beranda</a>
                 </li>
             </ul>
         </div>
@@ -34,11 +34,11 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Data Servis</h4>
-                            {{-- <a href="/cetak_lap_servis" target="_blank" class="btn btn-primary btn-round ml-auto">
+                            <h4 class="card-title">Data Beranda</h4>
+                            <a href="{{ route('add_beranda') }}" class="btn btn-primary btn-round ml-auto" style="color: white;">
                                 <i class="fa fa-plus"></i>
-                                Cetak
-                            </a> --}}
+                                Add Data
+                            </a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -46,36 +46,30 @@
                             <table id="add-row" class="display table table-striped table-hover" >
                                 <thead>
                                     <tr>
-                                        <th style="text-align: center; width: 7%;">No</th>
-                                        <th style="text-align: center;">Nama Teknisi</th>
-                                        <th style="text-align: center;">Tanggal BM</th>
-                                        <th style="text-align: center;">Jenis</th>
-                                        <th style="text-align: center;">Merk</th>
-                                        <th style="text-align: center;">Biaya</th>
-                                        <th style="text-align: center;">Tipe</th>
-                                        <th style="text-align: center;">Status</th>
-                                        <th style="width: 14%; text-align:center;">Aksi</th>
+                                        <th style="text-align: center; width:7%;">No</th>
+                                        <th style="text-align: center; width:30%;">Judul</th>
+                                        <th style="text-align: center; width:30%;">Deskripsi</th>
+                                        <th style="text-align: center; width:10%;">Gambar</th>
+                                        <th style="width: 13%; text-align:center;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no=1 @endphp
-                                        @foreach ($servis as $row)
+                                        @foreach ($data as $row)
                                     <tr>
                                         
                                             <td style="text-align: center;">{{ $no++ }}</td>
-                                            <td>{{ $row->nama }}</td>
-                                            <td style="text-align: center;">{{ $row->tgl_masuk_barang }}</td>
-                                            <td style="text-align: center;">{{ $row->jenis_barang }}</td>
-                                            <td style="text-align: center;">{{ $row->merk_barang }}</td>
-                                            <td style="text-align: center;">{{ $row->biaya_servis }}</td>
-                                            <td style="text-align: center;">{{ $row->tipe_barang }}</td>
-                                            <td style="text-align: center;">{{ $row->status }}</td>
-                                            <td>
-                                                <a href="/servis/edit/{{ $row->id_servis }}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>
-                                                <a href="#modalHapusServis{{ $row->id_servis }}" data-toggle="modal" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
+                                            <td>{{ $row->judul }}</td>
+                                            <td style="text-align: center;">{{ $row->deskripsi }}</td>
+                                            <td style="text-align: center;">
+                                                <img src="{{ asset('storage/'.$row->gambar) }}" alt="" class="img-tumbnail" width="120px;" height="70px;">
                                             </td>
+                                            <td>
+                                                <a href="/beranda/edit/{{ $row->id_beranda }}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                                                <a href="#modalHapusBeranda{{ $row->id_beranda }}" data-toggle="modal" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
+                                            </td>
+                                        @endforeach
                                     </tr>
-                                    @endforeach
                                     
                                 </tbody>
                             </table>
@@ -86,17 +80,17 @@
         </div>
     </div>
 </div>
-@foreach ($servis as $u)
-<div class="modal fade" id="modalHapusServis{{ $u->id_servis }}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+@foreach ($data as $u)
+<div class="modal fade" id="modalHapusBeranda{{ $u->id_beranda }}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Hapus Data Servis</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Hapus Data Beranda</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="get" enctype="multipart/form-data" action="/servis/destroy/{{ $u->id_servis }}">
+            <form method="get" enctype="multipart/form-data" action="/beranda/destroy/{{ $u->id_beranda }}">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">

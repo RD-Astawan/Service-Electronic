@@ -1,56 +1,41 @@
 @extends('layouts/master_2')
 @section('main')
   <main id="main">
+    <!-- ====== Whatsap Icon ====== -->
+    <a  class="whats-app" href="https://wa.link/5ntmnh" target="_blank">
+      <i class="bi bi-whatsapp my-float"></i>
+    </a>
      <!-- ======= Beranda Section ======= -->
      <div id="beranda" class="about-area area-padding">
       <div class="container">
         <div class="row">
           <div class="row text-center">
             <div class="row">
-              <div class="col-md-4">
-                <div class="card" style="min-height: 450px;">
-                  <img class="card-img-top" src="{{ asset('assets/img/img.jpg') }}" alt="Card image cap">
-                  <div class="card-body"><br>
-                    <h6 class="card-title"><b>Wahyu Service Elektronik</b></h6><hr>
-                    <p class="card-text">Wahyu Service Elektronik dapat memperbaiki peralatan elektroik dan 
-                      juga <i>handphone</i>, yang berlokasi di Jl. Pertulaka No.6 Denpasar Utara, Bali </p>
+              @foreach ($data as $item)
+                <div class="col-md-4">
+                  <div class="card" style="min-height: 450px;">
+                    <img class="card-img-top" src="{{ asset('storage/'.$item->gambar) }}" alt="Card image cap" width="214" height="140">
+                    <div class="card-body"><br>
+                      <h6 class="card-title"><b>{{ $item->judul }}</b></h6><hr>
+                      <p class="card-text">{{ $item->deskripsi }}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card" style="min-height: 450px;">
-                  <img class="card-img-top" src="{{ asset('assets/img/img.jpg') }}" alt="Card image cap">
-                  <div class="card-body"><br>
-                    <h6 class="card-title"><b>Tracking Perbaikan</b></h6><hr>
-                    <p class="card-text">Tracking perbaikan ini merupakan fitur yang dapat anda gunakan untuk 
-                      melihat sejauh mana proses perbaikan dari barang yang di servis</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card" style="min-height: 450px;">
-                  <img class="card-img-top" src="{{ asset('assets/img/img.jpg') }}" alt="Card image cap">
-                  <div class="card-body"><br>
-                    <h6 class="card-title"><b>Tips Perawatan</b></h6><hr>
-                    <p class="card-text">Melakukan langkah perawatan sederhana dapat membantu memperpanjang jangka
-                      pakai peralatan elektronik maupun <i>handphone</i> yang anda miliki</p>
-                    </p>
-                  </div>
-                </div>
-              </div>
+              @endforeach
             </div>
         </div>
         </div>
       </div>
     </div><!-- End Beranda Section -->
 
+    @foreach ($profile as $item)
     <!-- ======= Profile Section ======= -->
     <div id="profil" class="about-area area-padding">
       <div class="container">
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="section-headline text-center">
-              <h3>Profile Wahyu Service Elektronik</h3>
+              <h3>{{ $item->judul }}</h3>
             </div>
           </div>
         </div><br>
@@ -60,7 +45,7 @@
               <div class="single-well">
                 <div class="box">
                 <a href="#">
-                  <img src="{{ asset('homepage/img/about/1.jpg') }}" class="box_img" width = "300" height = "300" alt="">
+                  <img src="{{ asset('storage/'.$item->gambar) }}" class="box_img" width = "300" height = "300" alt="">
                 </a>
             </div>
               </div>
@@ -70,21 +55,7 @@
             <div class="well-middle">
               <div class="single-well" style="text-align: justify">
                 <p>
-                    Wahyu Service Elektronik sudah mulai beroperasi sejak tahun 2005 dengan pendiri 
-                    sekaligus pemilik usaha bernama Bapak Made Artawan. Dulunya wahyu service Elektronik 
-                    hanya menerima perbaikan peralatan elektronik saja. Namun sejak tahun 2020, Wahyu Service
-                     Elektronik mulai menerima perbaikan hanphone dengan segala jenis merek yang dimana 
-                     pengelolaanya dibantu oleh sang anak
-                </p>
-                <p>
-                    Wahyu Service Elektronik berlokasi di Jl. Pertulaka No.6 Denpasar Utara. Lokasi 
-                    tersebut berdekatan dengan pasar tradisional Agung Peninjoan. Lokasi ini sudah 
-                    terdaftar pada google map dengan nama Wahyu Service Elektronik 
-                </p>
-                <p>
-                    Wahyu Service Elektronik sudah sangat dipercaya oleh perusahaan-perusahaan besar 
-                    sehingga memiliki kerjasama dengan berbagai hotel, penginapan dan juga villa yang 
-                    ada di Bali
+                    {{ $item->deskripsi }}
                 </p>
               </div>
             </div>
@@ -92,6 +63,7 @@
         </div>
       </div>
     </div><!-- End Profile Section -->
+    @endforeach
 
     <!-- ======= Tracking Section ======= -->
     <div id="tracking" class="services-area area-padding">
@@ -142,129 +114,38 @@
         </p>
         <br>
         <div class="row">
-          <div class="col-md-3">
-          <div class="card">
-            <img class="card-img-top" src="{{ asset('assets/img/img.jpg') }}" alt="Card image cap">
-            <div class="card-body">
-              <h6 class="card-title"><b>Tips Perawatan :</b></h6>
-              <ul>
-                <li>1. ..........</li>
-                <li>2. ..........</li>
-                <li>3. ..........</li>
-                <li>4. ..........</li>
-                <li>5. ..........</li>
-              </ul>
+          @php
+            $i=1;
+          @endphp
+          @foreach ($tips as $item)
+            <div class="col-md-3">
+            <div class="card">
+              <img class="card-img-top" src="{{ asset('storage/'.$item->gambar) }}" width="214" height="140" alt="Card image cap">
+              <div class="card-body">
+                <h6 class="card-title"><b>Tips Perawatan : {{ $item->judul }}</b></h6>
+                <ul>
+                  @php
+                    $no=1;
+                    $list2 = App\Models\TipPerawatan::find($i);
+                    if($list2 == null){
+                      $i++;
+                    }else{
+                      foreach ($list2->listperawatan as $n)
+                      {
+                        @endphp
+                        <li>{{ $no++ }}. @php echo $n->list_tips @endphp </li> @php
+                      }
+                    }
+                  @endphp
+                  
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card">
-            <img class="card-img-top" src="{{ asset('assets/img/img.jpg') }}" alt="Card image cap">
-            <div class="card-body">
-              <h6 class="card-title"><b>Tips Perawatan :</b></h6>
-              <ul>
-                <li>1. ..........</li>
-                <li>2. ..........</li>
-                <li>3. ..........</li>
-                <li>4. ..........</li>
-                <li>5. ..........</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card">
-            <img class="card-img-top" src="{{ asset('assets/img/img.jpg') }}" alt="Card image cap">
-            <div class="card-body">
-              <h6 class="card-title"><b>Tips Perawatan :</b></h6>
-              <ul>
-                <li>1. ..........</li>
-                <li>2. ..........</li>
-                <li>3. ..........</li>
-                <li>4. ..........</li>
-                <li>5. ..........</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card">
-            <img class="card-img-top" src="{{ asset('assets/img/img.jpg') }}" alt="Card image cap">
-            <div class="card-body">
-              <h6 class="card-title"><b>Tips Perawatan :</b></h6>
-              <ul>
-                <li>1. ..........</li>
-                <li>2. ..........</li>
-                <li>3. ..........</li>
-                <li>4. ..........</li>
-                <li>5. ..........</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br><br>
-      <div class="row">
-        <div class="col-md-3">
-        <div class="card">
-          <img class="card-img-top" src="{{ asset('assets/img/img.jpg') }}" alt="Card image cap">
-          <div class="card-body">
-            <h6 class="card-title"><b>Tips Perawatan :</b></h6>
-              <ul>
-                <li>1. ..........</li>
-                <li>2. ..........</li>
-                <li>3. ..........</li>
-                <li>4. ..........</li>
-                <li>5. ..........</li>
-              </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <img class="card-img-top" src="{{ asset('assets/img/img.jpg') }}" alt="Card image cap">
-          <div class="card-body">
-            <h6 class="card-title"><b>Tips Perawatan :</b></h6>
-              <ul>
-                <li>1. ..........</li>
-                <li>2. ..........</li>
-                <li>3. ..........</li>
-                <li>4. ..........</li>
-                <li>5. ..........</li>
-              </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <img class="card-img-top" src="{{ asset('assets/img/img.jpg') }}" alt="Card image cap">
-          <div class="card-body">
-            <h6 class="card-title"><b>Tips Perawatan :</b></h6>
-              <ul>
-                <li>1. ..........</li>
-                <li>2. ..........</li>
-                <li>3. ..........</li>
-                <li>4. ..........</li>
-                <li>5. ..........</li>
-              </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <img class="card-img-top" src="{{ asset('assets/img/img.jpg') }}" alt="Card image cap">
-          <div class="card-body">
-            <h6 class="card-title"><b>Tips Perawatan :</b></h6>
-              <ul>
-                <li>1. ..........</li>
-                <li>2. ..........</li>
-                <li>3. ..........</li>
-                <li>4. ..........</li>
-                <li>5. ..........</li>
-              </ul>
-          </div>
-        </div>
-      </div>
+          @php
+            $i++;
+          @endphp
+      @endforeach
     </div>
       </div>
     </div><!-- End Team Section -->

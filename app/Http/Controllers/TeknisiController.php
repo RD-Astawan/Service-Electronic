@@ -75,8 +75,42 @@ class TeknisiController extends Controller
         ]);
 
         //Alert::success('Berhasil','Data User Ditambahkan');
-        Alert::success('Berhasil', 'Data User berhasil ditambahkan');
+        Alert::success('Berhasil', 'Data Servis berhasil ditambahkan');
         return redirect('servis');
+    }
+
+    public function edit($id_servis){
+        if(!$this->Servis->showonedata_servis($id_servis)){
+            abort(404);
+        }
+        $data_servis = [
+            'servis' => $this->Servis->showonedata_servis($id_servis),
+        ];
+        $users = DB::table('users')->where('level', 'customer')->get();
+        return view('edit_servis', $data_servis)
+        ->with(compact('users'))
+        ->with('$data');
+    }
+
+    public function update(Request $request, $id)
+    {
+ 
+        $servis = Servis::find($id);
+        
+            $servis->id_user             = $request->id_user;
+            $servis->jenis_barang        = $request->jenis_barang;
+            $servis->merk_barang         = $request->merk_barang;
+            $servis->tipe_barang         = $request->tipe_barang;
+            $servis->tgl_masuk_barang    = $request->tgl_masuk_barang;
+            $servis->biaya_servis        = $request->biaya_servis;
+            $servis->garansi             = $request->garansi;
+            $servis->tgl_barang_diambil  = $request->tgl_barang_diambil;
+            $servis->status              = $request->status;
+        
+        $servis->save();
+
+        Alert::success('Berhasil', 'Data Servis berhasil diedit');
+        return redirect('/servis');
     }
 
     public function showsms(){
@@ -102,22 +136,27 @@ class TeknisiController extends Controller
     public function sendCustomMessage(Request $request)
     {
         \Validator::make($request->all(), [
-            'contact' => 'required|array',
+            'no_hp' => 'required|array',
             'body' => 'required',
         ])->validate();
-        $recipients = $request->contact;
+        $recipients = $request->no_hp;
      
         foreach ($recipients as $recipient) {
             $this->sendMessage($request->body, $recipient);
         }
 
-        SMSGateway::create([
-            'id_sms' => $request->id_sms,
-            'isi_pesan' => $request->body,
-            'tgl_terkirim' => $request->tgl_terkirim,
-        ]);
-
+        // SMSGateway::create([
+        //     'id_sms' => $request->id_sms,
+        //     'isi_pesan' => $request->body,
+        //     'tgl_terkirim' => $request->tgl_terkirim,
+        // ]);
+        $data = $request->all();
+        $data['no_hp'] = implode(',', $request->no_hp);
+        $data['isi_pesan'] = $request->body;
+        SMSGateway::create($data);
+        //return dd($data);
         return back()->with(['success' => "Pesan Berhasil Dikirim!"]);
+        
     }
    
     private function sendMessage($message, $recipients)
@@ -127,5 +166,15 @@ class TeknisiController extends Controller
         $twilio_number = getenv("TWILIO_NUMBER");
         $client = new Client($account_sid, $auth_token);
         $client->messages->create($recipients, ['from' => $twilio_number, 'body' => $message]);
+    }
+
+    public function destroy($id_servis)
+    {
+        $servis = Servis::find($id_servis);
+ 
+        $servis->delete();
+
+        Alert::success('Berhasil', 'Data Servis berhasil dihapus');
+        return redirect('/servis');
     }
 }

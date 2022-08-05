@@ -26,7 +26,17 @@ class SMSGateway extends Model
         'id_sms',
         'isi_pesan',
         'tgl_terkirim',
+        'no_hp',
     ];
+    public function setCategoryAttribute($value)
+    {
+        $this->attributes['no_hp'] = json_encode($value);
+    }
+
+    public function getCategoryAttribute($value)
+    {
+        return $this->attributes['no_hp'] = json_decode($value);
+    }
 
     /**
      * The attributes that should be cast.

@@ -55,13 +55,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="squareInput">Username</label>
-                                        <input type="text" name="username" class="form-control input-square" id="squareInput" placeholder="Username" required>
+                                        <label for="squareInput">No Hp</label>
+                                        <input type="text" name="no_hp" class="form-control input-square" id="squareInput" placeholder="No Hp" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="squareInput">Password</label>
-                                        <input type="password" name="password" class="form-control input-square" id="squareInput" placeholder="password" required>
+                                        <label for="squareInput">Alamat</label>
+                                        <input type="text" name="alamat" class="form-control input-square" id="squareInput" placeholder="Alamat" required>
                                     </div>
 
                                     <div class="form-group">
@@ -76,40 +76,40 @@
                                           </div>
                                     </div>
 
-                                   
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="squareInput">No Hp</label>
-                                        <input type="text" name="no_hp" class="form-control input-square" id="squareInput" placeholder="No Hp" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="squareInput">Alamat</label>
-                                        <input type="text" name="alamat" class="form-control input-square" id="squareInput" placeholder="Alamat" required>
-                                    </div>
-
-                                    <div class="form-group">
                                         <label>Level</label><br>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input level" type="radio" name="level" id="inlineRadio1" value="admin">
+                                            <input class="form-check-input level ts" type="radio" name="level" id="inlineRadio1" value="admin">
                                             <label class="form-check-label" for="inlineRadio1">Admin</label>
                                           </div>
                                           <div class="form-check form-check-inline">
-                                            <input class="form-check-input level" type="radio" name="level" id="inlineRadio2" value="teknisi">
+                                            <input class="form-check-input level ts" type="radio" name="level" id="inlineRadio2" value="teknisi">
                                             <label class="form-check-label" for="inlineRadio2">Teknisi</label>
                                           </div>
                                           <div class="form-check form-check-inline">
-                                            <input class="form-check-input level" type="radio" name="level" id="inlineRadio3" value="customer">
+                                            <input class="form-check-input level ta" type="radio" name="level" id="inlineRadio3" value="customer">
                                             <label class="form-check-label" for="inlineRadio3">Customer</label>
                                           </div>
+                                    </div>
+                                    <div id="delivery">
+                                        <div class="form-group">
+                                            <label for="squareInput">Username</label>
+                                            <input type="text" name="username" class="form-control input-square" id="squareInput" placeholder="Username">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="squareInput">Password</label>
+                                            <input type="password" name="password" class="form-control input-square" id="squareInput" placeholder="password">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr>
                         <button class="btn btn-secondary" type="submit">Simpan</button>
-                        <a href="{{ route('user') }}" class="btn btn-warning">Kembali</a>
+                        <a href="{{ url()->previous() }}" class="btn btn-warning">Kembali</a>
                         </form>
 
                       

@@ -76,8 +76,35 @@
 								</ul>
 							</div>
 						</li>
+						<li class="nav-item {{ request()->is('show_beranda','show_profile','show_tips') ? 'active' : '' }}">
+							<a data-toggle="collapse" href="#m_dashboard">
+								<i class="fas fa-pen-square"></i>
+								<p>Manajemen Dash</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="m_dashboard">
+								<ul class="nav nav-collapse">
+									<li class="{{ request()->is('show_beranda') ? 'active' : '' }}">
+										<a href="{{ route('show_beranda') }}">
+											<span class="sub-item">Manajemen Beranda</span>
+										</a>
+									</li>
+									<li class="{{ request()->is('show_profile') ? 'active' : '' }}">
+										<a href="{{ route('show_profile') }}">
+											<span class="sub-item">Manajemen Profile</span>
+										</a>
+									</li>
+									<li class="{{ request()->is('show_tips') ? 'active' : '' }}">
+										<a href="{{ route('show_tips') }}">
+											<span class="sub-item">Manajemen Tips Perawatan</span>
+										</a>
+									</li>
+									
+								</ul>
+							</div>
+						</li>
 						@elseif(auth()->user()->level == 'teknisi')
-						<li class="nav-item" >
+						<li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}" >
 							<a href="{{ route('dashboard') }}">
 								<i class="fas fa-home"></i>
 								<p>Dashboard Teknisi</p>

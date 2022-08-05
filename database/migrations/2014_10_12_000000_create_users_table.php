@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('no_hp');
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
-            $table->string('username');
-            $table->string('password');
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
         });
     }
 

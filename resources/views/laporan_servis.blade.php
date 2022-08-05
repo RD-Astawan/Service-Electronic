@@ -35,7 +35,35 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">Laporan Data Servis</h4>
-                            <a class="btn btn-primary ml-auto" target="_blank" href="{{ url('downloadpdf_servis') }}">Export to PDF</a>
+                            <button onclick="switch_btn()" class="btn btn-primary btn-round ml-auto">
+                                <i class="fa fa-print"></i>
+                                Cetak
+                            </button>
+                        </div>
+                        <div id="panel-pemasukan">
+                            <br>
+                            <form action="/cetak_lap_servis" method="get" target="_blank">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Tanggal Mulai</label>
+                                        <input type="date" class="form-control" name="tgl_mulai">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Tanggal Selesai</label>
+                                        <input type="date" class="form-control" name="tgl_selesai">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success btn-sm" style="margin-top:27px;">Print PDF</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
                         </div>
                     </div>
                     <div class="card-body">
@@ -43,7 +71,7 @@
                             <table id="add-row" class="display table table-striped table-hover" >
                                 <thead>
                                     <tr>
-                                        <th style="text-align: center"> No </th>
+                                        <th style="text-align: center; width:7%;"> No </th>
                                         <th style="text-align: center">ID Servis</th>
                                         <th style="text-align: center">Nama Cust</th>
                                         <th style="text-align: center">Tanggal BM</th>
@@ -59,15 +87,15 @@
                                         @foreach ($servis as $row)
                                     <tr>
                                         
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $row->id_servis }}</td>
+                                            <td style="text-align: center">{{ $no++ }}</td>
+                                            <td style="text-align: center">{{ $row->id_servis }}</td>
                                             <td>{{ $row->nama }}</td>
-                                            <td>{{ $row->tgl_masuk_barang }}</td>
-                                            <td>{{ $row->jenis_barang }}</td>
-                                            <td>{{ $row->merk_barang }}</td>
-                                            <td>{{ $row->tipe_barang }}</td>
-                                            <td>{{ $row->garansi }}</td>
-                                            <td>{{ $row->status }}</td>
+                                            <td style="text-align: center">{{ $row->tgl_masuk_barang }}</td>
+                                            <td style="text-align: center">{{ $row->jenis_barang }}</td>
+                                            <td style="text-align: center">{{ $row->merk_barang }}</td>
+                                            <td style="text-align: center">{{ $row->tipe_barang }}</td>
+                                            <td style="text-align: center">{{ $row->garansi }}</td>
+                                            <td style="text-align: center">{{ $row->status }}</td>
                                         @endforeach
                                     </tr>
                                     

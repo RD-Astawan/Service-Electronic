@@ -20,8 +20,6 @@
                     </li>
                     <li>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> My Profile</a>
-                        <div class="dropdown-divider"></div>
                         <a href="{{ route('logout') }}" class="dropdown-item"
                         onclick="
                         event.preventDefault();
