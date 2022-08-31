@@ -47,10 +47,22 @@ class TeknisiController extends Controller
         else{
             $kd = "1";
         }
+        // next code for sms
+        $id_sms = DB::table('s_m_s_gateways')->select(DB::raw('MAX(RIGHT(id_sms,1)) as kode'));
+        $kd_2 = "";
+        if($id_sms->count() > 0){
+            foreach ($id_sms->get() as $row) {
+                $tmp = ((int)$row->kode)+1;
+                $kd_2 = sprintf("%01s",$tmp);
+            }
+        }
+        else{
+            $kd_2 = "1";
+        }
 
         $users = DB::table('users')->where('level', 'customer')->get();
         //
-        return view('add_servis', compact('users','kd'));
+        return view('add_servis', compact('users','kd', 'kd_2'));
     }
 
     public function store(Request $request)
@@ -59,7 +71,10 @@ class TeknisiController extends Controller
         //     'id_user' => ['required'],
         //     // add rules for other fields
         // ]);
-        
+        $no_hp = $request->no_hp;
+        $status = $request->status;
+        $id_sms = $request->id_sms;
+        $tgl_terkirim = $request->tgl_terkirim;
         Servis::create([
             'id_servis' => $request->id_servis,
             'id_user' => $request->id_user,
@@ -71,8 +86,9 @@ class TeknisiController extends Controller
             'garansi' => $request->garansi,
             'tgl_barang_diambil' => $request->tgl_barang_diambil,
             'status' => $request->status,
-            
         ]);
+
+        $this->whatsappNotification($no_hp, $status, $id_sms, $tgl_terkirim);
 
         //Alert::success('Berhasil','Data User Ditambahkan');
         Alert::success('Berhasil', 'Data Servis berhasil ditambahkan');
@@ -86,9 +102,21 @@ class TeknisiController extends Controller
         $data_servis = [
             'servis' => $this->Servis->showonedata_servis($id_servis),
         ];
+        // next code for sms
+        $id_sms = DB::table('s_m_s_gateways')->select(DB::raw('MAX(RIGHT(id_sms,1)) as kode'));
+        $kd_2 = "";
+        if($id_sms->count() > 0){
+            foreach ($id_sms->get() as $row) {
+                $tmp = ((int)$row->kode)+1;
+                $kd_2 = sprintf("%01s",$tmp);
+            }
+        }
+        else{
+            $kd_2 = "1";
+        }
         $users = DB::table('users')->where('level', 'customer')->get();
         return view('edit_servis', $data_servis)
-        ->with(compact('users'))
+        ->with(compact('users','kd_2'))
         ->with('$data');
     }
 
@@ -108,7 +136,11 @@ class TeknisiController extends Controller
             $servis->status              = $request->status;
         
         $servis->save();
-
+        $no_hp = $request->no_hp;
+        $status = $request->status;
+        $id_sms = $request->id_sms;
+        $tgl_terkirim = $request->tgl_terkirim;
+        $this->whatsappNotification($no_hp, $status, $id_sms, $tgl_terkirim);
         Alert::success('Berhasil', 'Data Servis berhasil diedit');
         return redirect('/servis');
     }
@@ -133,40 +165,40 @@ class TeknisiController extends Controller
         return view('sms', $data);
     }
 
-    public function sendCustomMessage(Request $request)
-    {
-        \Validator::make($request->all(), [
-            'no_hp' => 'required|array',
-            'body' => 'required',
-        ])->validate();
-        $recipients = $request->no_hp;
+    // public function sendCustomMessage(Request $request)
+    // {
+    //     \Validator::make($request->all(), [
+    //         'no_hp' => 'required|array',
+    //         'body' => 'required',
+    //     ])->validate();
+    //     $recipients = $request->no_hp;
      
-        foreach ($recipients as $recipient) {
-            $this->sendMessage($request->body, $recipient);
-        }
+    //     foreach ($recipients as $recipient) {
+    //         $this->sendMessage($request->body, $recipient);
+    //     }
 
-        // SMSGateway::create([
-        //     'id_sms' => $request->id_sms,
-        //     'isi_pesan' => $request->body,
-        //     'tgl_terkirim' => $request->tgl_terkirim,
-        // ]);
-        $data = $request->all();
-        $data['no_hp'] = implode(',', $request->no_hp);
-        $data['isi_pesan'] = $request->body;
-        SMSGateway::create($data);
-        //return dd($data);
-        return back()->with(['success' => "Pesan Berhasil Dikirim!"]);
+    //     // SMSGateway::create([
+    //     //     'id_sms' => $request->id_sms,
+    //     //     'isi_pesan' => $request->body,
+    //     //     'tgl_terkirim' => $request->tgl_terkirim,
+    //     // ]);
+    //     $data = $request->all();
+    //     $data['no_hp'] = implode(',', $request->no_hp);
+    //     $data['isi_pesan'] = $request->body;
+    //     SMSGateway::create($data);
+    //     //return dd($data);
+    //     return back()->with(['success' => "Pesan Berhasil Dikirim!"]);
         
-    }
+    // }
    
-    private function sendMessage($message, $recipients)
-    {
-        $account_sid = getenv("TWILIO_SID");
-        $auth_token = getenv("TWILIO_AUTH_TOKEN");
-        $twilio_number = getenv("TWILIO_NUMBER");
-        $client = new Client($account_sid, $auth_token);
-        $client->messages->create($recipients, ['from' => $twilio_number, 'body' => $message]);
-    }
+    // private function sendMessage($message, $recipients)
+    // {
+    //     $account_sid = getenv("TWILIO_SID");
+    //     $auth_token = getenv("TWILIO_AUTH_TOKEN");
+    //     $twilio_number = getenv("TWILIO_NUMBER");
+    //     $client = new Client($account_sid, $auth_token);
+    //     $client->messages->create($recipients, ['from' => $twilio_number, 'body' => $message]);
+    // }
 
     public function destroy($id_servis)
     {
@@ -176,5 +208,47 @@ class TeknisiController extends Controller
 
         Alert::success('Berhasil', 'Data Servis berhasil dihapus');
         return redirect('/servis');
+    }
+
+    public function selectForm($id_user)
+    {
+        $user = User::find($id_user);
+        return response()->json([
+            'user' => $user
+        ]);
+    }
+
+    private function whatsappNotification(string $recipient, $status, $id_sms, $tgl_terkirim)
+    {
+        $sid    = getenv("TWILIO_AUTH_SID");
+        $token  = getenv("TWILIO_AUTH_TOKEN");
+        $wa_from= getenv("TWILIO_WHATSAPP_FROM");
+        $twilio = new Client($sid, $token);
+        
+        if($status == 'identifikasi-kerusakan')
+        {
+            $body = "Pelanggan Wahyu Service Elektronik, barang elektronik Anda sedang dalam proses Identifikasi
+            Masalah. Mohon menunggu kabar selanjutnya. ~WahyuServiceElektronik";
+        }
+        else if($status== 'proses-perbaikan')
+        {
+            $body = "Pelanggan Wahyu Service Elektronik, barang elektronik Anda sedang dalam proses Proses Perbaikan. Mohon menunggu kabar selanjutnya. ~WahyuServiceElektronik";
+        }
+        else if($status== 'testing')
+        {
+            $body = "Pelanggan Wahyu Service Elektronik, barang elektronik Anda sedang dalam proses Testing. Mohon menunggu kabar selanjutnya. ~WahyuServiceElektronik";
+        }
+        else{
+            $body = "Pelanggan Wahyu Service Elektronik, barang elektronik Anda sudah Selesai dilakukan perbaikan. Mohon menunggu kabar selanjutnya. ~WahyuServiceElektronik";
+        }
+
+        SMSGateway::create([
+            'id_sms' => $id_sms,
+            'isi_pesan' => $body,
+            'tgl_terkirim' => $tgl_terkirim,
+            'no_hp' => $recipient,
+        ]);
+
+        return $twilio->messages->create("whatsapp:$recipient",["from" => "whatsapp:$wa_from", "body" => $body]);
     }
 }

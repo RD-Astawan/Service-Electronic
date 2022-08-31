@@ -35,6 +35,10 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">Data User</h4>
+                            <a href="{{ route('add_user') }}" class="btn btn-primary btn-round ml-auto">
+                                <i class="fa fa-plus"></i>
+                                Data Baru
+                            </a>
                         </div>
                     </div>
                     <div class="card-body">

@@ -57,17 +57,21 @@
                         @php $no=1 @endphp
                         @foreach ($data_akhir as $row)
                             <tr>
-                                    <td style="text-align: center">{{ $no++ }}</td>
-                                    <td style="text-align: center">{{ $row->id_servis }}</td>
-                                    <td style="text-align: center">{{ $row->tgl_masuk_barang }}</td>
-                                    <td style="text-align: center">{{ $row->jenis_barang }}</td>
-                                    <td style="text-align: center">{{ $row->merk_barang }}</td>
-                                    <td style="text-align: center">{{ $row->tipe_barang }}</td>
-                                    <td style="text-align: center">{{ $row->tgl_barang_diambil }}</td>
-                                    <td style="text-align: center">{{ $row->garansi }}</td>
-                                    <td style="text-align: center">{{ $row->biaya_servis }}</td>
+                                <td style="text-align: center">{{ $no++ }}</td>
+                                <td style="text-align: center">{{ $row->id_servis }}</td>
+                                <td style="text-align: center">{{ $row->tgl_masuk_barang }}</td>
+                                <td style="text-align: center">{{ $row->jenis_barang }}</td>
+                                <td style="text-align: center">{{ $row->merk_barang }}</td>
+                                <td style="text-align: center">{{ $row->tipe_barang }}</td>
+                                <td style="text-align: center">{{ $row->tgl_barang_diambil }}</td>
+                                <td style="text-align: center">{{ $row->garansi }}</td>
+                                <td style="text-align: center">{{ $row->biaya_servis }}</td>
                             </tr>
                     @endforeach
+                            <tr>
+                                <td colspan="8"><b>Total Biaya</b></td>
+                                <td>Rp. {{ number_format($sum_biaya) }}</td>
+                            </tr>
                     </table> 
                 </div>
             </div>

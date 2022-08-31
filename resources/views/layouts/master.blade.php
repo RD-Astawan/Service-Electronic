@@ -86,6 +86,20 @@
 		function switch_btn() {
 			$('#panel-pemasukan').toggle(1000);
 		}
+
+		function selectFunction() {
+			var id_user = document.getElementById("selectInput").value;
+			// document.getElementById("dumetschool").innerHTML = "Kamu memilih Kursus di Dumet School " + x;
+			//alert(x);
+			$.ajax({
+				type: "GET",
+				url: "/selectForm/"+id_user,
+				success: function(response){
+					$('#no_hp').val(response.user.no_hp);
+				}
+			});
+		}
+
 		$(document).ready(function() {
 			$('#add-row').DataTable({
 			});
@@ -109,8 +123,14 @@
 	 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	 <script>
 		 $(document).ready(function() {
-		 $('.contact').select2();
-		 $('#panel-pemasukan').hide();
+			$('.contact').select2();
+			$('#panel-pemasukan').hide();
+			//for cheked form user and pass
+			var username = document.getElementById("username").value;
+			var password = document.getElementById("password").value;
+			if(username=='' && password==''){
+				$('#formCheked').hide();
+			}
 		 });
 	 </script>
 	 <script>

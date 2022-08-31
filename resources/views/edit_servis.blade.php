@@ -47,13 +47,17 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="squareInput">Nama Customer</label>
-                                        <select class="form-control input-square" id="squareInput" name="id_user" style="padding: .25rem .5rem !important; height:36px;" required>
+                                        <select class="form-control input-square" id="selectInput" name="id_user" onchange="selectFunction()" style="padding: .25rem .5rem !important; height:36px;" required>
                                             <option value="">-- Pilih Nama Customer --</option>
                                             @foreach ($users as $row)
                                             <option value="{{ $row->id }}">{{ $row->nama }}</option>
                                             @endforeach
                                         </select>
                                     </div>
+
+                                    <input type="hidden" name="no_hp" class="form-control input-square" id="no_hp" required>
+                                    <input type="hidden" value="{{ 'SMS'.$kd_2 }}" name="id_sms" class="form-control">
+                                    <input type="hidden" value="{{ date('Y-m-d H:i:s'); }}" name="tgl_terkirim" class="form-control">
 
                                     <div class="form-group">
                                         <label for="squareInput">Tgl Barang Masuk</label>
@@ -79,21 +83,21 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="squareInput">Tipe Barang</label>
-                                        <input type="text" name="tipe_barang" value="{{ $servis->tipe_barang }}" class="form-control input-square" id="squareInput" required>
+                                        <input type="text" name="tipe_barang" value="{{ $servis->tipe_barang }}" class="form-control input-square" id="squareInput">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="squareInput">Biaya Servis</label>
-                                        <input type="text" name="biaya_servis" value="{{ $servis->biaya_servis }}" class="form-control input-square" id="squareInput" required>
+                                        <input type="text" name="biaya_servis" value="{{ $servis->biaya_servis }}" class="form-control input-square" id="squareInput">
                                     </div>
                                     <div class="form-group">
                                         <label for="squareInput">Tgl Barang Diambil</label>
-                                        <input type="date" name="tgl_barang_diambil" value="{{ $servis->tgl_barang_diambil }}" class="form-control input-square" id="squareInput" required>
+                                        <input type="date" name="tgl_barang_diambil" value="{{ $servis->tgl_barang_diambil }}" class="form-control input-square" id="squareInput">
                                     </div>
                                     <div class="form-group">
                                         <label for="squareInput">Garansi</label>
-                                        <input type="text" name="garansi" value="{{ $servis->garansi }}" class="form-control input-square" id="squareInput" required>
+                                        <input type="text" name="garansi" value="{{ $servis->garansi }}" class="form-control input-square" id="squareInput">
                                     </div>
 
                                     <div class="form-group">
@@ -102,13 +106,13 @@
                                             <tr>
                                                 <td>
                                                     <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="identifikasi-kerusakan" @if($servis->status=="identifikasi-kerusakan") checked @endif>
+                                                    <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="identifikasi-kerusakan" @if($servis->status=="identifikasi-kerusakan") checked @endif required>
                                                     <label class="form-check-label" for="inlineRadio1">Identifikasi Kerusakan</label>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="proses-perbaikan" @if($servis->status=="proses-perbaikan") checked @endif>
+                                                        <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="proses-perbaikan" @if($servis->status=="proses-perbaikan") checked @endif required>
                                                         <label class="form-check-label" for="inlineRadio2">Proses Perbaikan</label>
                                                       </div>
                                                 </td>
@@ -116,13 +120,13 @@
                                             <tr>
                                                 <td>
                                                     <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="testing" @if($servis->status=="testing") checked @endif>
+                                                    <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="testing" @if($servis->status=="testing") checked @endif required>
                                                     <label class="form-check-label" for="inlineRadio2">Testing</label>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="selesai" @if($servis->status=="selesai") checked @endif>
+                                                        <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="selesai" @if($servis->status=="selesai") checked @endif required>
                                                         <label class="form-check-label" for="inlineRadio2">Selesai</label>
                                                       </div>
                                                 </td>

@@ -39,6 +39,10 @@
                                 <i class="fa fa-plus"></i>
                                 Cetak
                             </a> --}}
+                            <a href="{{ route('add_servis') }}" class="btn btn-primary btn-round ml-auto">
+                                <i class="fa fa-plus"></i>
+                                Data Baru
+                            </a>
                         </div>
                     </div>
                     <div class="card-body">

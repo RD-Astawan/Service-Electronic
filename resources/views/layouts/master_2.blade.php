@@ -189,9 +189,9 @@
   </header><!-- End Header -->
 
   <!-- ======= hero Section ======= -->
-  <section id="hero">
+  <section id="hero" style="height: 350px !important">
     <div class="hero-container">
-      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000" style="height: 350px !important">
         <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
         <div class="carousel-inner" role="listbox">
           <div class="carousel-item active" style="background-image: url({{ asset('homepage/img/hero-carousel/1.jpg') }})">

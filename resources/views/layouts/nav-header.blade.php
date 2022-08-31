@@ -1,6 +1,7 @@
 <!-- Navbar Header -->
 <nav class="navbar navbar-header navbar-expand-lg">		
     <div class="container-fluid">
+        <h1 style="color:white;">Wahyu Service Elektronik</h1>
         <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
             <li class="nav-item dropdown hidden-caret">
                 <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">

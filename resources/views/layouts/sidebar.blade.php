@@ -28,7 +28,13 @@
 								<p>Dashboard</p>
 							</a>
 						</li>
-						<li class="nav-item {{ request()->is('user','add_user') ? 'active' : '' }}">
+						<li class="nav-item {{ request()->is('user','add_user') ? 'active' : '' }}" >
+							<a href="{{ route('user') }}">
+								<i class="fas fa-layer-group"></i>
+								<p>Users</p>
+							</a>
+						</li>
+						{{-- <li class="nav-item {{ request()->is('user','add_user') ? 'active' : '' }}">
 							<a data-toggle="collapse" href="#users">
 								<i class="fas fa-layer-group"></i>
 								<p>Users</p>
@@ -48,7 +54,7 @@
 									</li>
 								</ul>
 							</div>
-						</li>
+						</li> --}}
 						<li class="nav-item {{ request()->is('laporan_servis','laporan_pemasukan','laporan_pesan') ? 'active' : '' }}">
 							<a data-toggle="collapse" href="#forms">
 								<i class="fas fa-pen-square"></i>
@@ -110,8 +116,15 @@
 								<p>Dashboard Teknisi</p>
 							</a>
 						</li>
+
+						<li class="nav-item {{ request()->is('servis','add_servis') ? 'active' : '' }}" >
+							<a href="{{ route('teknisi') }}">
+								<i class="fas fa-layer-group"></i>
+								<p>Servis</p>
+							</a>
+						</li>
 						
-						<li class="nav-item {{ request()->is(['servis','add_servis','sms']) ? 'active' : '' }}">
+						{{-- <li class="nav-item {{ request()->is(['servis','add_servis','sms']) ? 'active' : '' }}">
 							<a data-toggle="collapse" href="#users">
 								<i class="fas fa-layer-group"></i>
 								<p>Servis</p>
@@ -137,7 +150,7 @@
 
 								</ul>
 							</div>
-						</li>
+						</li> --}}
 						@endif
 					
 						

@@ -50,14 +50,16 @@
                                         <input type="text" name="nama" value="{{ $user->nama }}" class="form-control input-square" id="squareInput" placeholder="Nama" required>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="squareInput">Username</label>
-                                        <input type="text" name="username" value="{{ $user->username }}" class="form-control input-square" id="squareInput" placeholder="Username" required>
-                                    </div>
+                                    <div id="formCheked">
+                                        <div class="form-group">
+                                            <label for="squareInput">Username</label>
+                                            <input type="text" name="username" value="{{ $user->username }}" class="form-control input-square" id="username" placeholder="Username" required>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="squareInput">Password</label>
-                                        <input type="password" name="password" class="form-control input-square" id="squareInput" placeholder="password">
+                                        <div class="form-group">
+                                            <label for="squareInput">Password</label>
+                                            <input type="password" name="password" class="form-control input-square" id="password" placeholder="password">
+                                        </div>
                                     </div>
 
                                     <div class="form-group">

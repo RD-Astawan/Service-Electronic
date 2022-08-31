@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('merk_barang');
             $table->string('tipe_barang');
             $table->date('tgl_masuk_barang');
-            $table->string('biaya_servis');
-            $table->string('garansi');
-            $table->date('tgl_barang_diambil');
+            $table->string('biaya_servis')->nullable();
+            $table->string('garansi')->nullable();
+            $table->date('tgl_barang_diambil')->nullable();
             $table->string('status');
         });
 

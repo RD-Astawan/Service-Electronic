@@ -47,13 +47,17 @@
                                     <input type="hidden" name="id_servis" value="{{ 'DTS'.$kd }}" class="form-control input-square" id="squareInput">
                                     <div class="form-group">
                                         <label for="squareInput">Nama Customer</label>
-                                        <select class="form-control input-square" id="squareInput" name="id_user" style="padding: .25rem .5rem !important; height:36px;" required>
+                                        <select class="form-control input-square" id="selectInput" name="id_user" onchange="selectFunction()" style="padding: .25rem .5rem !important; height:36px;" required>
                                             <option value="">-- Pilih Nama Customer --</option>
                                             @foreach ($users as $row)
                                             <option value="{{ $row->id }}">{{ $row->nama }}</option>
                                             @endforeach
                                         </select>
                                     </div>
+
+                                    <input type="hidden" name="no_hp" class="form-control input-square" id="no_hp" required>
+                                    <input type="hidden" value="{{ 'SMS'.$kd_2 }}" name="id_sms" class="form-control">
+                                    <input type="hidden" value="{{ date('Y-m-d H:i:s'); }}" name="tgl_terkirim" class="form-control">
 
                                     <div class="form-group">
                                         <label for="squareInput">Tgl Barang Masuk</label>
@@ -62,20 +66,12 @@
 
                                     <div class="form-group">
                                         <label for="squareInput">Jenis Barang</label>
-                                        <select class="form-control input-square" id="squareInput" name="jenis_barang" style="padding: .25rem .5rem !important; height:36px;" required>
-                                            <option value="hp">Hp (exp)</option>
-                                            <option>Next</option>
-                                            <option>Next</option>
-                                        </select>
+                                        <input type="text" name="jenis_barang" class="form-control input-square" id="squareInput" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="squareInput">Merk Barang</label>
-                                        <select class="form-control input-square" id="squareInput" name="merk_barang" style="padding: .25rem .5rem !important; height:36px;" required>
-                                            <option value="samsung">Samsung (exp)</option>
-                                            <option>Next</option>
-                                            <option>Next</option>
-                                        </select>
+                                        <input type="text" name="merk_barang" class="form-control input-square" id="squareInput" required>
                                     </div>
 
                                     <div class="form-group">
@@ -87,17 +83,17 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="squareInput">Biaya Servis</label>
-                                        <input type="text" name="biaya_servis" class="form-control input-square" id="squareInput" placeholder="Biaya servis" required>
+                                        <input type="text" name="biaya_servis" class="form-control input-square" id="squareInput" placeholder="Biaya servis">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="squareInput">Tgl Barang Diambil</label>
-                                        <input type="date" name="tgl_barang_diambil" class="form-control input-square" id="squareInput" placeholder="Alamat" required>
+                                        <input type="date" name="tgl_barang_diambil" class="form-control input-square" id="squareInput" placeholder="Alamat">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="squareInput">Garansi</label>
-                                        <input type="text" name="garansi" class="form-control input-square" id="squareInput" placeholder="Garansi" required>
+                                        <input type="text" name="garansi" class="form-control input-square" id="squareInput" placeholder="Garansi">
                                     </div>
 
                                     <div class="form-group">
@@ -106,13 +102,13 @@
                                             <tr>
                                                 <td>
                                                     <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="identifikasi-kerusakan">
+                                                    <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="identifikasi-kerusakan" required>
                                                     <label class="form-check-label" for="inlineRadio1">Identifikasi Kerusakan</label>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="proses-perbaikan">
+                                                        <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="proses-perbaikan" required>
                                                         <label class="form-check-label" for="inlineRadio2">Proses Perbaikan</label>
                                                       </div>
                                                 </td>
@@ -120,13 +116,13 @@
                                             <tr>
                                                 <td>
                                                     <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="testing">
+                                                    <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="testing" required>
                                                     <label class="form-check-label" for="inlineRadio2">Testing</label>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="selesai">
+                                                        <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="selesai" required>
                                                         <label class="form-check-label" for="inlineRadio2">Selesai</label>
                                                       </div>
                                                 </td>
@@ -140,8 +136,6 @@
                         <button type="submit" class="btn btn-secondary">Simpan</button>
                         <button class="btn btn-warning">Kembali</button>
                         </form>
-
-                      
                     </div>
                 </div>
             </div>

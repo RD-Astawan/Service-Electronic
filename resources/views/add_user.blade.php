@@ -46,9 +46,11 @@
                             <div class="row">						
                                 <div class="col-md-6">
                                    
-                                        <input type="hidden" id="read_2" name="id_2" value="{{ $kd }}" class="form-control input-square" id="squareInput">                          
-                                        <input type="hidden" id="read" name="id" value="" class="form-control input-square" id="squareInput">
-                     
+                                    <input type="hidden" id="read_2" name="id_2" value="{{ $kd }}" class="form-control input-square" id="squareInput">
+                                    <div class="form-group">
+                                        <label for="squareInput">ID <small>(Terlihat setelah level user dipilih)</small></label>                       
+                                        <input type="text" id="read" name="id" value="" class="form-control input-square" id="squareInput" readonly>
+                                    </div>
                                     <div class="form-group">
                                         <label for="squareInput">Nama</label>
                                         <input type="text" name="nama" class="form-control input-square" id="squareInput" placeholder="Nama" required>

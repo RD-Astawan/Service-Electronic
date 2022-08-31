@@ -31,7 +31,8 @@ class LaporanController extends Controller
         $tgl_selesai = $request->tgl_selesai;
 
         $data_akhir = Servis::whereBetween('tgl_barang_diambil', [$tgl_mulai, $tgl_selesai])->get();
-        return view('laporan.pemasukan.cetak_lap_pemasukan', compact('data_akhir','tgl_mulai','tgl_selesai'));
+        $sum_biaya  = Servis::whereBetween('tgl_barang_diambil', [$tgl_mulai, $tgl_selesai])->sum('biaya_servis');
+        return view('laporan.pemasukan.cetak_lap_pemasukan', compact('data_akhir','tgl_mulai','tgl_selesai','sum_biaya'));
     }
 
     public function laporan_sms(Request $request){

@@ -68,12 +68,14 @@ Route::post('/custom',  [TeknisiController::class,'sendCustomMessage']);
 Route::get('/servis/edit/{id_servis}', [TeknisiController::class, 'edit'])->name('servis_edit');
 Route::post('/servis/update/{id}', [TeknisiController::class, 'update'])->name('servis_update');
 Route::get('/servis/destroy/{id_servis}', [TeknisiController::class, 'destroy'])->name('servis_destroy');
+Route::get('/selectForm/{id_user}', [TeknisiController::class, 'selectForm']);
 
 //data master customer
 
 //ajax
 Route::get('/search',  [CustomerController::class,'search']);
 Route::get('/read',  [CustomerController::class,'read']);
+
 
 //data master admin
 Route::get('/laporan_servis', [AdminController::class, 'show'])->name('laporan_servis');
