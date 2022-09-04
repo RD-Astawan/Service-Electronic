@@ -56,7 +56,7 @@
                                     </div>
 
                                     <input type="hidden" name="no_hp" class="form-control input-square" id="no_hp" required>
-                                    <input type="hidden" value="{{ 'SMS'.$kd_2 }}" name="id_sms" class="form-control">
+                                    <input type="hidden" value="{{ 'WA'.$kd_2 }}" name="id_sms" class="form-control">
                                     <input type="hidden" value="{{ date('Y-m-d H:i:s'); }}" name="tgl_terkirim" class="form-control">
 
                                     <div class="form-group">
@@ -134,7 +134,7 @@
                         </div>
                         <hr>
                         <button type="submit" class="btn btn-secondary">Simpan</button>
-                        <button class="btn btn-warning">Kembali</button>
+                        <a href="{{ route('teknisi') }}" class="btn btn-warning">Kembali</a>
                         </form>
                     </div>
                 </div>

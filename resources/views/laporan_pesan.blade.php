@@ -7,7 +7,7 @@
 <div class="content">
     <div class="page-inner">
         <div class="page-header">
-            <h4 class="page-title">Data SMS</h4>
+            <h4 class="page-title">Data Pesan Whatsapp</h4>
             <ul class="breadcrumbs">
                 <li class="nav-home">
                     <a href="#">
@@ -33,7 +33,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Data Pesan Terkirim</h4>
+                            <h4 class="card-title">Data Pesan Whatsapp</h4>
                             <button onclick="switch_btn()" class="btn btn-primary btn-round ml-auto">
                                 <i class="fa fa-print"></i>
                                 Cetak

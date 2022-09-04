@@ -256,19 +256,25 @@
       readData();
     $("#search-input").keyup(function(){
       var strcari = $("#search-input").val();
-      if(strcari != ""){
-        $("#read").html('<center class="text-muted">Melakukan Pencarian ....</center>');
-        $.ajax({
-          type: "get",
-          url : "{{ url('search') }}",
-          data: "id=" +strcari,
-          success:function(data){
-            $("#read").html(data);
-          }
-        });
+      var len = strcari.length;
+      if(len > 3){
+        if(strcari != ""){
+          $("#read").html('<center class="text-muted">Melakukan Pencarian ....</center>');
+          $.ajax({
+            type: "get",
+            url : "{{ url('search') }}",
+            data: "id=" +strcari,
+            success:function(data){
+              $("#read").html(data);
+            }
+          });
+        }
+        else{
+          readData()
+        }
       }
       else{
-        readData()
+        $("#read").html('<center class="text-muted">Masukan ID secara lengkap ....</center>');
       }
     });
   });

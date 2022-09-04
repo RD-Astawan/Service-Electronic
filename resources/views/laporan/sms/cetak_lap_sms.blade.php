@@ -35,7 +35,7 @@
                     </table>
                     <hr class="line-title">
                     <p align="center">
-                        Laporan Data SMS
+                        Laporan Data Pesan Whatsapp
                     </p>
                     <p align="center">
                         Periode Tanggal {{ $tgl_mulai }} s/d {{ $tgl_selesai }} 

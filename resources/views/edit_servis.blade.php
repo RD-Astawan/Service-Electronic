@@ -1,6 +1,6 @@
 
 @extends('layouts.master')
-@section('title','admin-dashboar')
+@section('title','teknisi-dashboar')
 @push('css-page')
 <link rel="icon" href="{{ asset('assets/img/icon.ico') }}" type="image/x-icon"/>
 @endpush
@@ -56,7 +56,7 @@
                                     </div>
 
                                     <input type="hidden" name="no_hp" class="form-control input-square" id="no_hp" required>
-                                    <input type="hidden" value="{{ 'SMS'.$kd_2 }}" name="id_sms" class="form-control">
+                                    <input type="hidden" value="{{ 'WA'.$kd_2 }}" name="id_sms" class="form-control">
                                     <input type="hidden" value="{{ date('Y-m-d H:i:s'); }}" name="tgl_terkirim" class="form-control">
 
                                     <div class="form-group">
@@ -66,20 +66,12 @@
 
                                     <div class="form-group">
                                         <label>Jenis Barang</label>
-                                        <select class="form-control input-square" name="jenis_barang" style="padding: .25rem .5rem !important; height:36px;" required>
-                                            <option>LCD</option>
-                                            <option value="hp" @if($servis->jenis_barang=="hp") selected @endif>Hp</option>
-                                            <option>TV</option>
-                                        </select>
+                                        <input type="text" name="jenis_barang" value="{{ $servis->jenis_barang }}" class="form-control input-square" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="squareInput">Merk Barang</label>
-                                        <select class="form-control input-square" id="squareInput" name="merk_barang" style="padding: .25rem .5rem !important; height:36px;" required>
-                                            <option>Iphone</option>
-                                            <option>Oppo</option>
-                                            <option value="samsung" @if($servis->merk_barang=="samsung") selected @endif>Samsung</option>
-                                        </select>
+                                        <input type="text" name="merk_barang" value="{{ $servis->merk_barang }}" class="form-control input-square" id="squareInput" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="squareInput">Tipe Barang</label>
@@ -140,8 +132,6 @@
                         <button class="btn btn-secondary" type="submit">Simpan</button>
                         <a href="{{ route('teknisi') }}" class="btn btn-warning">Kembali</a>
                         </form>
-
-                      
                     </div>
                 </div>
             </div>

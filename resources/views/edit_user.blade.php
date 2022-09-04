@@ -53,7 +53,7 @@
                                     <div id="formCheked">
                                         <div class="form-group">
                                             <label for="squareInput">Username</label>
-                                            <input type="text" name="username" value="{{ $user->username }}" class="form-control input-square" id="username" placeholder="Username" required>
+                                            <input type="text" name="username" value="{{ $user->username }}" class="form-control input-square" id="username" placeholder="Username">
                                         </div>
 
                                         <div class="form-group">
